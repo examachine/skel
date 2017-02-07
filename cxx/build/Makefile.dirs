@@ -1,0 +1,8 @@
+# Directories
+
+# Source and build directories
+
+# Source directory
+srcdir = ./src
+
+EXTENDED_RECURSION=1

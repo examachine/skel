@@ -1,0 +1,11 @@
+Release 0.2   22 July 2001
+--------------------------
+
+ * auto-cxx skeleton gets a better layout: new config directory
+ * cxx: justmake collection is separated into interface and implementation
+ * more automake like interfaces to justmake
+ * better library handling and libtool invocation
+ * better multiple library and program build support, with interdependencies
+ * preliminary recursive make and cvs support
+ * cxx/: small compatibility fixes for g++-3.0
+ * misc. fixes

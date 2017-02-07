@@ -1,0 +1,69 @@
+# -*-makefile-*-
+#
+# by exa aka Eray Ozkural 2001
+# see COPYING file that comes with this distribution
+
+# Pattern Rules
+
+# Automatic dependency rules
+
+# C/C++
+
+$(workingdir)/%.d: %.cxx $(checkdir)
+	$(check-dir)
+	@echo Generating dependencies for $*.cxx
+	@shtool mkdir -pf $(workingdir)/$(dir $<)
+	@echo -n "$(workingdir)/$(dir $<)" > $@
+	@if !($(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $< >> $@); \
+	  then rm $@; fi
+$(workingdir)/%.d: %.cc
+	$(check-dir)
+	@echo Generating dependencies for $*.cc
+	@shtool mkdir -pf $(workingdir)/$(dir $<)
+	@echo -n "$(workingdir)/$(dir $<)" > $@
+	@if !($(CXX) -MM $(CPPFLAGS) $(CXXFLAGS) $< >> $@); \
+	  then rm $@; fi
+$(workingdir)/%.d: %.c
+	$(check-dir)
+	@echo Generating dependencies for $*.c
+	@shtool mkdir -pf $(workingdir)/$(dir $<)
+	@echo -n "$(workingdir)/$(dir $<)" > $@
+	@if !($(CC) -MM $(CPPFLAGS) $(CFLAGS) $< >> $@); \
+	  then rm $@; fi
+
+# Compilation rules
+
+# C/C++
+
+$(workingdir)/%.o : %.cxx
+	@echo Compiling $<
+	@$(CXX) -c $(CXXFLAGS) $(CPPFLAGS) $< -o $@
+$(workingdir)/%.lo : %.cxx
+	@echo Compiling $<
+	@$(LIBTOOL) --mode=compile $(CXX) -c $(CXXFLAGS) $(CPPFLAGS) $< -o $@
+$(workingdir)/%.o : %.cc
+	@echo Compiling $<
+	@$(CXX) -c $(CXXFLAGS) $(CPPFLAGS) $< -o $@
+$(workingdir)/%.lo : %.cc
+	@echo Compiling $<
+	@$(LIBTOOL) --mode=compile $(CXX) -c $(CXXFLAGS) $(CPPFLAGS) $< -o $@
+$(workingdir)/%.o : %.c
+	@echo Compiling $<
+	@$(CC) -c $(CXXFLAGS) $(CPPFLAGS) $< -o $@
+$(workingdir)/%.lo : %.c
+	@echo Compiling $<
+	@$(LIBTOOL) --mode=compile $(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
+
+# Flex - Bison rules
+
+%.tab.c %.tab.h : %.grammar %.hxx
+	$(BISON) $< --output-file=$*.tab.c
+
+%.flex.c : %.flex %.tab.h %.hxx
+	$(FLEX) -o$@ $<
+
+# Other compilers
+
+%.dvi : %.tex
+	@echo Compiling latex to dvi $<
+	@$(LATEX) $<

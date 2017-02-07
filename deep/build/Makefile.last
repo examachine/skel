@@ -1,0 +1,14 @@
+# Makefile
+#
+# by exa aka Eray Ozkural 2001
+# see COPYING file that comes with this distribution
+
+replace = $(shell which build/replace.sh)
+$(shell build/replace.sh)
+include build/rules2
+
+test-replace:
+	echo $(replace)
+
+test-misc:
+	echo $(LIB_OBJFILES:%.lo=%.ooo)

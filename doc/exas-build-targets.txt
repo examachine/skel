@@ -1,0 +1,1 @@
+'edit' invoke editor for all source files

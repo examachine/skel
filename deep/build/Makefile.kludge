@@ -1,0 +1,59 @@
+# Features that are too kludgey and will be replaced
+#
+# by exa aka Eray Ozkural 2001
+# see COPYING file that comes with this distribution
+
+define init-rules
+	echo "#init rules" > build/rules; rm -rf build/rules2
+endef
+
+define write-rule2
+cat << ENDOFFILE
+$(subst dollar,$$,$(1))
+ENDOFFILE  >> rules
+endef
+
+define write-rule
+cat << EOF
+BOOOOOOOKKKKKK
+EOF
+endef
+
+define write-rule
+echo '$(subst dollar,$$,$(1))' >> build/rules
+endef
+
+define extra-rules
+endef
+
+eval-impl = $(shell echo '$(1)' >> $(workingdir)/rules)
+
+$(shell $(init-rules))
+
+#eval = $(if first-rule,$(init-eval),$(call eval-impl $(1)))
+#eval = $(call eval-impl $(1))
+#eval = $(warning "calling eval")
+#eval = $(shell echo '$(subst dollar,$$,$(1))'  >> rules)
+eval = $(shell $(write-rule))
+
+map = $(foreach a,$(2),$(call $(1),$(a)))
+map2 = $(foreach a,$(2),$(call $(1),$(a),$(3)))
+
+
+$(init-eval)
+
+define end-rules
+	cat $(workingdir)/rules | sed 's/<newline>/
+/' > $(workingdir)/rules2
+endef
+
+$(workingdir)/rules2: $(workingdir)/rules
+#	$(end-rules)
+
+#define end-rules
+#	cat rules >>rules2
+#endef
+
+
+
+#$(shell $(end-rules))

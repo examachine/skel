@@ -1,0 +1,96 @@
+# Makefile
+#
+# by exa aka Eray Ozkural 2001
+# see COPYING file that comes with this distribution
+
+# Rules
+
+# Default rule
+
+
+all: defaultmesg compileinfo checkdir TAGS-recursive all-recursive \
+ programs libraries $(DOC)
+
+
+defaultmesg:
+	@echo Default rule invoked, building everything.
+
+compileinfo:
+	@echo Package name: $(PACKAGE)
+	@echo Version: $(VERSION)
+	@echo Build architecture: $(BUILDARCH)
+	@echo Build configuration: $(BUILD)
+	@echo C preprocessor flags: $(CPPFLAGS)
+	@echo C flags: $(CFLAGS)
+	@echo C++ flags: $(CXXFLAGS)
+	@echo Building programs: $(PROGRAMS)
+	@echo Building libraries: $(LIBRARIES)
+
+checkdir:
+	$(check-dir)
+
+# Generic exec build
+
+define build-exec
+	@echo Building executable: $@
+	@echo from $^
+	@echo LD flags: $(LDFLAGS)
+	@echo Libraries used: $(LIBS) $($(notdir $@)_LIBS)
+	@$(LIBTOOL) --mode=link $(LD) $(LDFLAGS) $(CXXFLAGS) $(LIBDIR) $(INCLUDEDIR) \
+	       $^ $(LIBS) $(OUTPUTFLAG) $@
+	@echo Installing executable in the current directory
+	#@$(INSTALL_PROGRAM) $@ .
+	-@ln -fs $@ .
+endef
+
+define call-build-exec
+<newline>	dollar(build-exec)
+endef
+
+prog-deprule = $(call eval,$(1): checkdir dollar($(1)_EXECFILE))
+$(call map,prog-deprule,$(PROGRAMS))
+programs: $(PROGRAMS)
+
+prog-buildrule = $(call eval,dollar($(1)_EXECFILE): \
+dollar($(1)_OBJFILES) $(call-build-exec))
+$(call map,prog-buildrule,$(PROGRAMS))
+
+
+# Generic lib build
+
+libraries: $(libinfo) $(LIBRARIES)
+
+libinfo:
+	@echo Libraries: $(LIBRARIES)
+
+define build-lib
+	@echo Building library: $@
+	@echo From: $^
+	@echo LD flags: $(LDFLAGS)
+	$(LIBTOOL) --mode=link $(LD) $(LDFLAGS) $(CXXFLAGS) $(LIBDIR) $(INCLUDEDIR) \
+	       $^ $(OUTPUTFLAG) $@
+	@echo Installing library in the current directory
+	#@$(INSTALL_PROGRAM) $@ .
+	-@ln -fs $@ .
+endef
+
+define call-build-lib
+<newline>	dollar(build-lib)
+endef
+
+lib-deprule = $(call eval,$(1): checkdir dollar($(1)_LIBFILE))
+$(call map,lib-deprule,$(LIBRARIES))
+
+lib-buildrule = $(call eval,dollar($(1)_LIBFILE): \
+dollar($(1)_OBJFILES) $(call-build-lib))
+$(call map,lib-buildrule,$(LIBRARIES))
+
+TAGS:	$(SRCFILES)
+	@echo Building Emacs tags from $^
+	-@etags $^
+
+# Phony Targets
+
+.PHONY: all compileinfo checkdir clean realclean list listsrc \
+	arc listarc extractarc rmarc backup restore edit\
+	libinfo execinfo

@@ -1,0 +1,161 @@
+Notes on the GNU build environment
+----------------------------------
+
+Although autoconf and automake are convenient for maintaining portable build
+scripts, I'd like to restate the key points in GNU Coding Standards. This is
+a brief summary of the Release Process in the standards document.
+
+1. Running configure system-type
+ configure [flags]
+ 
+ normal operation
+ 
+ --srcdir
+   specify source dir
+ system-type
+   the system to build for
+ --enable-FEATURE[=PARAMETER]
+   optional features
+ --with-PACKAGE
+   PACKAGE will be installed (gnu-as, gnu-ld, gnu-libc, gdb, x, x-toolkit)
+ --nfp
+   no FPU
+ (any option that starts with --with or --enable are accepted)
+
+ for cross-operation,
+ 
+ --host=HOSTTYPE
+   when building a cross-compiler, cross-assembler, etc, specify the host system.
+ --build=HOSTTYPE
+   the host system to build the cross-compiler on.
+  
+2.Makefile Conventions
+
+  General
+  -------
+  + * start with SHELL=/bin/sh
+  + * .SUFFIXES: .c .o
+    * Don't assume '.' is in the path of execution.
+    * builddir [./] and $(srcdir) are different
+    * VPATH in GNU make works, use '$<' wil represent the file wherever it is
+      (there should be a single dep. file, use $(srcdir) when multiple dep.)
+    * non-source files in source dir must be made with goals such as $(srcdir)/
+    * have it work correctly with parallel make
+  
+  Utilities
+  ---------
+    * Use only 'sh' features
+    * these utils are allowed: cat cmp cp diff echo egrep expr false grep
+        install-info ln ls mkdir mv pwd rm rmdir sed sleep sort tar test touch
+        true (gzip in dist rule)
+    * compilers and related programs:
+        ar bison cc flex install ld ldconfig lex make
+        makeinfo ranlib texi2dvi yacc chgrp chmod chown mknod.
+      use make variables such as $(AR) instead of ar
+      $(MAKE) is a predefined variable in GNU make
+    * if you use symbolic links, implement a fallback for systems that
+      don't have symbolic links
+   
+  Command Variables
+  -----------------
+    * file utils don't have to be referred through variables
+    * each program name comes with an options variable.
+      for <PROG> use <PROG>FLAGS variable to determine options.
+      (CPPFLAGS if cpp run, LDFLAGS if linker run)
+    * don't include essential cc options in CFLAGS.
+      (wow!) Users want to specify it themselves.
+    * don't include -g in CFLAGS (unless exec. depends on it)
+    * put CFLAGS last in cc command
+    * CFLAGS should be used in every invocation of cc (including linking)
+    * INSTALL, INSTALL_PROGRAM, INSTALL_DATA must be defined, default value of
+      the latter two being $(INSTALL)
+    * Don't use directory names as the second arg to install commands
+ 
+  Directory Variables
+  -------------------
+    * installation root:
+     'prefix' default: /usr/local, complete GNU sys /
+     'exec_prefix' machine-specific prefix for exec and subroutines.
+    * executable file installation
+      'bindir' normal binaries default:$(prefix)/bin
+      'sbindir' su binaries default:$(prefix)/sbin
+      'libexecdir' executables used only by programs default:$(exec_prefix)/bin
+    * data file installation
+      'datadir' ro arch-independent data files default:$(prefix)/share
+      'sysconfdir' ro ASCII host-configuration files default:$(prefix)/etc
+      'sharedstatedir' rw arch-independent data files default:$(prefix)/com
+      'localstatedir' rw arch-dependent data default:$(prefix)/var
+    * dirs that are necessary for running program
+      'libdir' object files and libraries of object code.
+               default:$(exec_prefix)/lib
+      'lispdir' el files  
+    * 'includedir' include files default:(prefix)/include       
+    * documentation
+      'infodir'
+      'mandir'
+      'man<x>dir'
+      'manext' file name extension for the installed man page (normally .1)
+      'man<x>ext'
+    * 'srcdir' source directory, normally determined by configure
+    * if large num of files in one dir, grouping withing a subdir is sensible
+    * don't expect the user to give subdir name
+
+  Standard Targets
+  ----------------
+  'all' default, entire compilation
+
+  install commands:
+    'install' install proggy
+    'uninstall' undo installation
+    these have three Makefile categories (tab, and ref to a special var)
+    * normal ones: move files, set modes
+    * pre-(un)installation ones: alter other files (config and dats files)
+    * post-(un)installation ones: alter other files (config and dats files)
+      example: install-info for post-install and deleting info entries for
+               pre-install ones.
+    example category with a comment explaining it
+	    $(PRE_UNINSTALL)  # Pre-uninstall commands follow.
+
+    'install-strip' as install, but strip executables while doing that
+
+  clean commands
+    'clean' delete all files created while building, don't delete configs
+            and delete files that are not part of the distribution (like *.dvi)
+    'distclean' delete all files that are not part of the distribution.
+    'mostlyclean' doesn't delete files that are expensive to rebuild
+    'maintainer-clean' delete everything that can be build (except configure)
+
+  'TAGS' update a tags table for this program (ctags for vi and emacs)
+
+  documentation targets
+    'info' generate any info files needed 
+          Normally info files are part of distro, this target only updates
+    'dvi' generate dvi files for all texinfo docs.
+
+  'dist' create a compressed distribution tar file.
+         Prefix of all filenames in archive = <package-name>-<version-number>/
+         Archive name = <package-name>-<version-number>.tar.gz
+	 This target depends explicitly on all non-source files in distro.
+
+  'check' perform self-tests. program must be built
+
+  'installcheck' perform installation tests. program must be installed.
+
+  'installdirs' creates the directories to install files in.
+
+3. Releases
+-----------
+ - Package distro of "<package-name> version <version-number>" up in a
+   gzipped tar file with name '<package-name>-<version-number>.tar.gz
+   (talked about it before, it should unpack into
+     <package-name>-<version-number>/ subdir )
+ - building and installing shouldn't modify files contained in the distro.
+ - all source files are in distribution, but some non-source files may be
+   included to avoid unnecessary build dependencies
+ - directory that tar file unpacks has octal 777 permissions (world-writable)
+ - all files are world-readable
+ - no filename is more than 14 chars ( well, i don't care )
+ - don't include symlinks, or provide a fallback for systems that don't have
+   them (i don't care!)
+ - include texinfo source
+ - if small gnu packages are used, include them in the distribution

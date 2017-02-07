@@ -1,0 +1,55 @@
+# Makefile 
+#
+# by exa aka Eray Ozkural 2001
+# see COPYING file that comes with this distribution
+
+# Project files
+
+# Executable files
+PROGRAMS = app test
+# Library files
+LIBRARIES = mylib
+
+app: mylib
+
+# Source Files
+
+BUILDFILES = Makefile build/Makefile.*
+
+# Sources for app
+
+app_CXXFILES = Application.cxx
+#app_CXXFILES = $(wildcard *.cxx)
+app_CCFILES =
+app_CFILES =
+app_AFILES =
+app_INCFILES = General.hxx ISO_Library.hxx Log.hxx Utility.hxx
+#app_INCFILES = $(wildcard *.hxx)
+app_GRAMMARFILES =
+app_LEXFILES =
+
+app_LIBS = -lmylib
+
+# Sources for app2
+
+test_CXXFILES = Test.cxx
+
+# Sources for mylib
+
+mylib_CXXFILES = Utility.cxx
+
+# Documentation
+
+app_TXTFILES =
+app_INFOFILES =
+app_TEXFILES =
+app_DVIFILES = $(addsuffix .dvi, $(basename $(TEXFILES)))
+app_DOCFILES = $(TXTFILES) $(INFOFILES) $(TEXFILES)
+
+AUX = # TODO changelog
+
+# System Resources
+
+LIBS = # -lnana
+INCLUDES = # -I/usr/include
+LIBDIR =

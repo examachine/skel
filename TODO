@@ -1,0 +1,21 @@
+todo
+----
+
+-- cut justmake into its own package
++/ (c) port the build system in cxx to c
+-- (auto-c) make a c version of auto-cxx
+-- tools to use skeleton code easily (a la autoproject)
+-- (C++) support for command line parsing and other common tasks
+
+done
+----
+
+* (deep) make it work for a sample source tree
+
+* (cxx) break down user configuration and generic rules
+
+* (cxx) Why doesn't ifdefs work in automatic dependency include directives?
+  Fix it.
+
+* (cxx) Factor the Makefile into smaller ones, for automatic rules, user defined vars, etc.
+

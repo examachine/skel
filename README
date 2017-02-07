@@ -1,0 +1,42 @@
+
+Skeletons Collection
+---------------------
+
+Eray Ozkural, February 2001, Ankar
+
+
+This package contains various skeleton projects for C/C++. Their
+common feature is that they try to be generic, consistent, minimal
+and portable using only standard libraries.
+
+They are intended to be good starting points to write pure C/C++ programs
+under GNU/Linux systems. Thus, they assume a recent version of gnu
+tool chain.
+
+The most recent one is cxx
+
+auto-cxx:
+  ANSI C++ skel code that uses autoconf/automake
+
+c:
+  ANSI C skel code with just a small makefile
+
+cxx:
+  ANSI C++ skel code with a full featured build system that uses only GNU make
+
+c++:
+  Like cxx but with different file naming
+
+deep:
+  A recursive source tree
+
+doc:
+  Documentation
+
+start-old:
+  An old skeleton code
+
+
+Yes, I know that there are other skeleton collections around, but
+you will see that this one has especially nice code in cxx and has
+a slightly different approach.

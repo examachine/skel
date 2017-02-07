@@ -1,0 +1,49 @@
+	      update CHANGELOG (perhaps automatically) 
+              tag the release 
+                  cvs tag RELEASE_X_XX_XX 
+              up CVS major revision (so 2.0 = first release, 3.0 = second release, etc) 
+                  cvs commit -m "NEW RELEASE" -r y.0 
+                  cvs update -A 
+              export to a new directory 
+                  cd ..; cvs export -r HEAD (or -r y.0) -d foo-X.X.X foo 
+              tar 
+                  tar cvzf foo-X.X.X.tgz foo-X.X.X 
+              release on sourceforge (or whereever hosted) 
+              send freshmeat announcement 
+              announce elsewhere (relevant mailing lists, news groups, etc) 
+
+automation:
+-----------
+
+cvsversion=$(major)-$(minor)_$(revision)
+
+ChangeLog:
+	cvs2cl
+
+bump-revision:
+	rev=`cvs status | grep revision | awk '{print $3}' | sort -g |\
+	 tail -1 | cut --fields=1 --delimiter=.`;\
+	rev=`expr $rev+1`;\
+	echo cvs commit -m "NEW RELEASE" -r $rev.0 
+
+.PHONY: bump-revision;
+
+cvsdist: ChangeLog bump-revision
+	make check
+
+	# update CHANGELOG (perhaps automatically) (use cvs2cl)
+
+	# tag the release 
+	cvs tag release-$(version)
+
+	# up CVS major revision (ie 2.0 = first release, ...) 
+	cvs update -A 
+
+	#export to a new directory 
+	cvs export -r HEAD -d $(PACKAGE)-$(VERSION) $(CVSMODULE)
+	tar cvzf $(PACKAGE)-$(VERSION).tgz $(PACKAGE)-$(VERSION)
+
+	#release on sourceforge (or whereever hosted) 
+	#send freshmeat announcement 
+	#announce elsewhere (relevant mailing lists, news groups, etc)
+	# Thanks to jtauber and others on advogato for the suggestion!

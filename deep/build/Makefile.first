@@ -1,0 +1,5 @@
+# The makefile to be included first
+# see COPYING file
+# by exa aka Eray Ozkural 2001
+
+default: all

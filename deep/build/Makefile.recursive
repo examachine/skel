@@ -1,0 +1,92 @@
+# Flags to pass down to all sub-makes.
+# Please keep these in alphabetical order.
+JM_MAKEFLAGS = \
+	"AR_FLAGS=$(AR_FLAGS)" \
+	"AR_FOR_TARGET=$(AR_FOR_TARGET)" \
+	"AS_FOR_TARGET=$(AS_FOR_TARGET)" \
+	"BISON=$(BISON)" \
+	"CC_FOR_BUILD=$(CC_FOR_BUILD)" \
+	"CC_FOR_TARGET=$(CC_FOR_TARGET)" \
+	"CFLAGS=$(CFLAGS)" \
+	"CFLAGS_FOR_TARGET=$(CFLAGS_FOR_TARGET)" \
+	"CHILLFLAGS=$(CHILLFLAGS)" \
+	"CHILL_FOR_TARGET=$(CHILL_FOR_TARGET)" \
+	"CHILL_LIB=$(CHILL_LIB)" \
+	"CXX_FOR_BUILD=$(CXX_FOR_BUILD)" \
+	"CXXFLAGS=$(CXXFLAGS)" \
+	"CXXFLAGS_FOR_TARGET=$(CXXFLAGS_FOR_TARGET)" \
+	"CXX_FOR_TARGET=$(CXX_FOR_TARGET)" \
+	"DESTDIR=$(DESTDIR)" \
+	"DLLTOOL_FOR_TARGET=$(DLLTOOL_FOR_TARGET)" \
+	"INSTALL=$(INSTALL)" \
+	"INSTALL_DATA=$(INSTALL_DATA)" \
+	"INSTALL_PROGRAM=$(INSTALL_PROGRAM)" \
+	"INSTALL_SCRIPT=$(INSTALL_SCRIPT)" \
+	"LDFLAGS=$(LDFLAGS)" \
+	"LEX=$(LEX)" \
+	"LD_FOR_TARGET=$(LD_FOR_TARGET)" \
+	"LIBCFLAGS=$(LIBCFLAGS)" \
+	"LIBCFLAGS_FOR_TARGET=$(LIBCFLAGS_FOR_TARGET)" \
+	"LIBCXXFLAGS=$(LIBCXXFLAGS)" \
+	"LIBCXXFLAGS_FOR_TARGET=$(LIBCXXFLAGS_FOR_TARGET)" \
+	"M4=$(M4)" \
+	"MAKE=$(MAKE)" \
+	"MAKEINFO=$(MAKEINFO) $(MAKEINFOFLAGS)" \
+	"NM_FOR_TARGET=$(NM_FOR_TARGET)" \
+	"RANLIB_FOR_TARGET=$(RANLIB_FOR_TARGET)" \
+	"RPATH_ENVVAR=$(RPATH_ENVVAR)" \
+	"SHELL=$(SHELL)" \
+	"EXPECT=$(EXPECT)" \
+	"RUNTEST=$(RUNTEST)" \
+	"RUNTESTFLAGS=$(RUNTESTFLAGS)" \
+	"TARGET_SUBDIR=$(TARGET_SUBDIR)" \
+	"WINDRES_FOR_TARGET=$(WINDRES_FOR_TARGET)" \
+	"YACC=$(YACC)" \
+	"bindir=$(bindir)" \
+	"datadir=$(datadir)" \
+	"exec_prefix=$(exec_prefix)" \
+	"includedir=$(includedir)" \
+	"infodir=$(infodir)" \
+	"libdir=$(libdir)" \
+	"libexecdir=$(libexecdir)" \
+	"lispdir=$(lispdir)" \
+	"libstdcxx_incdir=$(libstdcxx_incdir)" \
+	"libsubdir=$(libsubdir)" \
+	"localstatedir=$(localstatedir)" \
+	"mandir=$(mandir)" \
+	"oldincludedir=$(oldincludedir)" \
+	"prefix=$(prefix)" \
+	"sbindir=$(sbindir)" \
+	"sharedstatedir=$(sharedstatedir)" \
+	"sysconfdir=$(sysconfdir)"\
+	"top_srcdir=$(top_srcdir)" 
+
+#export
+
+X_RECURSIVE = all-recursive clean-recursive \
+install-data-recursive install-exec-recursive \
+installdirs-recursive install-recursive uninstall-recursive \
+install-info-recursive check-recursive installcheck-recursive \
+info-recursive dvi-recursive TAGS-recursive
+
+$(X_RECURSIVE):
+	@set fnord $(MAKEFLAGS); amf=$$2; \
+	dot_seen=no; \
+	target=`echo $@ | sed s/-recursive//`; \
+	list='$(SUBDIRS)'; for subdir in $$list; do \
+	  echo "Making $$target in $$subdir"; \
+	  if test "$$subdir" = "."; then \
+	    dot_seen=yes; \
+	    local_target="$$target-jm"; \
+	  else \
+	    local_target="$$target"; \
+	  fi; \
+	  (cd $$subdir && $(MAKE) $(JM_MAKEFLAGS) $$local_target) \
+	   || case "$$amf" in *=*) exit 1;; *k*) fail=yes;; *) exit 1;; esac; \
+	done; \
+	
+#	if test "$$dot_seen" = "no"; then \
+#	  $(MAKE) $(JM_MAKEFLAGS) "$$target-jm" || exit 1; \
+#	fi; test -z "$$fail"
+
+.PHONY:	$(X_RECURSIVE)

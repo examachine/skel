@@ -1,0 +1,616 @@
+2001-08-25 16:49  exa
+
+	* cxx/justmake/Makefile.commands: added missing all: target to
+	
+2001-08-25 04:42  exa
+
+	* cxx/justmake/: Makefile.files, Makefile.pattern-rules,
+	Makefile.test: * fix: .c and .cc support for lib/prog builds
+	* -L $(workingdir) in LDFLAGS
+	* cleanup and test list-vars target
+	
+2001-08-24 14:19  exa
+
+	* cxx/justmake/: Makefile.cvs, Makefile.options,
+	Makefile.recursive: minor improvements
+	
+2001-07-31 07:16  exa
+
+	* TODO: new stuff to do
+	
+2001-07-25 17:32  exa
+
+	* cxx/justmake/Makefile.cvs: * new cvs release targets, and minor release option
+	
+2001-07-24 06:16  exa
+
+	* cxx/justmake/Makefile.pattern-rules: * fix: automatic dependency rules target directory appended
+	
+2001-07-23 03:57  exa
+
+	* cxx/: Makefile, build/Makefile.cvs, build/Makefile.dirs,
+	build/Makefile.files, build/Makefile.first, build/Makefile.last,
+	build/Makefile.options, build/Makefile.pattern-rules,
+	build/Makefile.targets, build/Makefile.utilities,
+	justmake/Makefile.automatic-dependencies,
+	justmake/Makefile.build-rules, justmake/Makefile.commands,
+	justmake/Makefile.cvs, justmake/Makefile.dirs,
+	justmake/Makefile.experimental, justmake/Makefile.files,
+	justmake/Makefile.first, justmake/Makefile.justmake,
+	justmake/Makefile.kludge, justmake/Makefile.last,
+	justmake/Makefile.options, justmake/Makefile.pattern-rules,
+	justmake/Makefile.recursive, justmake/Makefile.targets,
+	justmake/Makefile.test, justmake/Makefile.utilities,
+	justmake/bump-revision.sh, justmake/replace.sh,
+	src/Application.cxx, src/General.hxx, src/ISO_Library.hxx,
+	src/Log.cxx, src/Log.hxx, src/Test.cxx, src/Utility.cxx,
+	src/Utility.hxx: ** new relese 0.0.1
+	
+2001-07-23 03:37  exa
+
+	* cxx/justmake/Makefile.targets: * justmake: determine simple (non-recursive) targets
+	
+2001-07-23 03:34  exa
+
+	* cxx/: build/Makefile.files, build/Makefile.first,
+	justmake/Makefile.options, justmake/Makefile.recursive: * justmake: add ldflags and includes for library use
+	
+2001-07-23 03:25  exa
+
+	* cxx/: build/Makefile.first, justmake/Makefile.build-rules,
+	justmake/Makefile.commands, justmake/Makefile.recursive,
+	justmake/Makefile.targets, justmake/replace.sh: justmake:
+	 * recursive make wizardy
+	 * recursion with interdependencies among dirs
+	 * dependency based recursion
+	 * uniform target execution scheme
+	 * more informative messages for targets
+	 * link apps with $(app)_LIBS
+	
+2001-07-23 00:29  exa
+
+	* cxx/justmake/Makefile.commands: * fix: make standard targets call recursive make targets
+	
+2001-07-22 20:40  exa
+
+	* ChangeLog, cxx/justmake/Makefile.automatic-dependencies,
+	cxx/justmake/Makefile.pattern-rules: * add back cvs2cl generated changelog
+	* add support for automatic dep analysis of arbitrary source trees
+	
+2001-07-22 20:33  exa
+
+	* cxx/build/Makefile.experimental: [no log message]
+	
+2001-07-22 08:57  exa
+
+	* start-old/Application.d: [no log message]
+	
+2001-07-22 06:17  exa
+
+	* NEWS: * NEWS file added
+	
+2001-07-22 06:12  exa
+
+	* cxx/: justmake/Makefile.commands, justmake/Makefile.files,
+	src/ISO_Library.hxx: * include files are source files
+	* use $(SRCFILES) instead of $(SRC)
+	
+2001-07-22 05:52  exa
+
+	* cxx/: build/Makefile.files, src/General.hxx: * ANSI_Library -> ISO_Library
+	
+2001-07-20 21:56  exa
+
+	* auto-cxx/src/ANSI_Library.hxx, auto-cxx/src/Application.cxx,
+	auto-cxx/src/General.hxx, auto-cxx/src/Log.cxx,
+	auto-cxx/src/Log.hxx, auto-cxx/src/Makefile.am,
+	auto-cxx/src/Makefile.in, auto-cxx/src/Test.cxx,
+	auto-cxx/src/Utility.cxx, auto-cxx/src/Utility.hxx, c/Makefile,
+	c/src/config.h, c/src/global.h, c/src/main.c, c/src/system.h,
+	c++/Makefile, c++/src/ANSILibrary, c++/src/Application.cc,
+	c++/src/General, cxx/Makefile, cxx/build/Makefile.cvs,
+	cxx/build/Makefile.dirs, cxx/build/Makefile.experimental,
+	cxx/build/Makefile.files, cxx/build/Makefile.first,
+	cxx/build/Makefile.last, cxx/build/Makefile.options,
+	cxx/build/Makefile.pattern-rules, cxx/build/Makefile.targets,
+	cxx/build/Makefile.utilities,
+	cxx/justmake/Makefile.automatic-dependencies,
+	cxx/justmake/Makefile.build-rules, cxx/justmake/Makefile.commands,
+	cxx/justmake/Makefile.cvs, cxx/justmake/Makefile.dirs,
+	cxx/justmake/Makefile.experimental, cxx/justmake/Makefile.files,
+	cxx/justmake/Makefile.first, cxx/justmake/Makefile.justmake,
+	cxx/justmake/Makefile.kludge, cxx/justmake/Makefile.last,
+	cxx/justmake/Makefile.options, cxx/justmake/Makefile.pattern-rules,
+	cxx/justmake/Makefile.recursive, cxx/justmake/Makefile.targets,
+	cxx/justmake/Makefile.test, cxx/justmake/Makefile.utilities,
+	cxx/justmake/bump-revision.sh, cxx/justmake/replace.sh,
+	cxx/src/Application.cxx, cxx/src/General.hxx,
+	cxx/src/ISO_Library.hxx, cxx/src/Log.cxx, cxx/src/Log.hxx,
+	cxx/src/Test.cxx, cxx/src/Utility.cxx, cxx/src/Utility.hxx,
+	deep/Makefile, deep/build/Makefile.automatic-dependencies,
+	deep/build/Makefile.commands, deep/build/Makefile.dirs,
+	deep/build/Makefile.experimental, deep/build/Makefile.files,
+	deep/build/Makefile.first, deep/build/Makefile.kludge,
+	deep/build/Makefile.last, deep/build/Makefile.options,
+	deep/build/Makefile.pattern-rules, deep/build/Makefile.recursive,
+	deep/build/Makefile.rules, deep/build/Makefile.test,
+	deep/build/Makefile.utilities, deep/build/replace.sh,
+	deep/dir1/Makefile, deep/dir2/Makefile, doc/AUTHORS, doc/COPYING,
+	doc/ChangeLog, doc/INSTALL, doc/README.justmake, doc/THANKS,
+	doc/exas-build-targets.txt, doc/gnu-build-standards.txt,
+	doc/make-summary.txt, doc/release-steps.txt,
+	start-old/ANSILibrary.hxx, start-old/Application.cxx,
+	start-old/Application.d, start-old/General.hxx, start-old/Makefile,
+	start-old/def.cxx, start-old/def.hxx: ** new release 0.2.0
+	
+2001-07-20 21:31  exa
+
+	* AUTHORS, COPYING, INSTALL, README, THANKS, TODO,
+	auto-cxx/.emacs.desktop, auto-cxx/AUTHORS, auto-cxx/COPYING,
+	auto-cxx/ChangeLog, auto-cxx/INSTALL, auto-cxx/Makefile.am,
+	auto-cxx/Makefile.in, auto-cxx/NEWS, auto-cxx/README,
+	auto-cxx/aclocal.m4, auto-cxx/configure, auto-cxx/configure.ac,
+	auto-cxx/config/auto-cxx-id, auto-cxx/config/config.guess,
+	auto-cxx/config/config.h.in, auto-cxx/config/config.sub,
+	auto-cxx/config/install-sh, auto-cxx/config/ltconfig,
+	auto-cxx/config/ltmain.sh, auto-cxx/config/missing,
+	auto-cxx/config/mkinstalldirs, auto-cxx/config/stamp-h.in: [no log message]
+	
+2001-07-20 21:25  exa
+
+	* AUTHORS, COPYING, INSTALL, README, THANKS, TODO,
+	auto-cxx/.emacs.desktop, auto-cxx/AUTHORS, auto-cxx/COPYING,
+	auto-cxx/ChangeLog, auto-cxx/INSTALL, auto-cxx/Makefile.am,
+	auto-cxx/Makefile.in, auto-cxx/NEWS, auto-cxx/README,
+	auto-cxx/aclocal.m4, auto-cxx/configure, auto-cxx/configure.ac,
+	auto-cxx/config/auto-cxx-id, auto-cxx/config/config.guess,
+	auto-cxx/config/config.h.in, auto-cxx/config/config.sub,
+	auto-cxx/config/install-sh, auto-cxx/config/ltconfig,
+	auto-cxx/config/ltmain.sh, auto-cxx/config/missing,
+	auto-cxx/config/mkinstalldirs, auto-cxx/config/stamp-h.in: ** new release 0.2.0
+	
+2001-07-20 21:16  exa
+
+	* ChangeLog: * changelog removed
+	
+2001-07-20 21:11  exa
+
+	* ChangeLog, doc/release-steps.txt: * release steps atomation added
+	* changelog updated :P
+	
+2001-07-20 21:10  exa
+
+	* cxx/justmake/: Makefile.cvs, bump-revision.sh: * cvsdist somewhat working, new shell script to bump cvs revisions
+	
+2001-07-20 21:05  exa
+
+	* cxx/Makefile, cxx/build/Makefile.cvs, cxx/build/Makefile.dirs,
+	cxx/build/Makefile.experimental, cxx/build/Makefile.files,
+	cxx/build/Makefile.first, cxx/build/Makefile.last,
+	cxx/build/Makefile.options, cxx/build/Makefile.pattern-rules,
+	cxx/build/Makefile.targets, cxx/build/Makefile.utilities,
+	cxx/justmake/Makefile.experimental, AUTHORS, COPYING, ChangeLog,
+	INSTALL, README, THANKS, TODO, auto-cxx/.emacs.desktop,
+	auto-cxx/AUTHORS, auto-cxx/COPYING, auto-cxx/ChangeLog,
+	auto-cxx/INSTALL, auto-cxx/Makefile.am, auto-cxx/Makefile.in,
+	auto-cxx/NEWS, auto-cxx/README, auto-cxx/aclocal.m4,
+	auto-cxx/configure, auto-cxx/configure.ac,
+	auto-cxx/config/auto-cxx-id, auto-cxx/config/config.guess,
+	auto-cxx/config/config.h.in, auto-cxx/config/config.sub,
+	auto-cxx/config/install-sh, auto-cxx/config/ltconfig,
+	auto-cxx/config/ltmain.sh, auto-cxx/config/missing,
+	auto-cxx/config/mkinstalldirs, auto-cxx/config/stamp-h.in: ** new relese 0.2.0
+	
+2001-07-20 21:04  exa
+
+	* cxx/: Makefile, build/Makefile.cvs, build/Makefile.dirs,
+	build/Makefile.experimental, build/Makefile.files,
+	build/Makefile.first, build/Makefile.last, build/Makefile.options,
+	build/Makefile.pattern-rules, build/Makefile.targets,
+	build/Makefile.utilities, justmake/Makefile.experimental: ** new relese 0.0.1
+	
+2001-07-20 20:35  exa
+
+	* cxx/: Makefile, build/Makefile.cvs, build/Makefile.utilities,
+	justmake/Makefile.files, justmake/Makefile.justmake,
+	justmake/Makefile.kludge, justmake/Makefile.cvs: * add preliminary cvs support
+	
+2001-07-20 19:34  exa
+
+	* cxx/justmake/Makefile.kludge: * cleaned up makefile kludgery a bit
+	
+2001-07-20 19:29  exa
+
+	* cxx/: justmake/Makefile.justmake, justmake/Makefile.kludge,
+	justmake/Makefile.last, justmake/replace.sh, build/Makefile.test: * cleaned up makefile kludgery a bit
+	
+2001-07-20 19:11  exa
+
+	* cxx/: build/Makefile.targets, justmake/Makefile.justmake,
+	justmake/Makefile.targets: * arrange rules/targets files
+	
+2001-07-20 19:07  exa
+
+	* cxx/justmake/Makefile.rules: * rename Makefile.rules
+	
+2001-07-20 19:05  exa
+
+	* cxx/justmake/: Makefile.build-rules, Makefile.commands,
+	Makefile.justmake, Makefile.rules, Makefile.targets: * arrange rules and targets files
+	
+2001-07-20 18:32  exa
+
+	* cxx/build/: Makefile.commands, Makefile.rules: * separate Makefile.utilities (not very well though)
+	
+2001-07-20 18:18  exa
+
+	* cxx/build/Makefile.utilities: * separate Makefile.utilities (not very well though)
+	
+2001-07-20 18:15  exa
+
+	* cxx/justmake/: Makefile.dirs, Makefile.files, Makefile.first,
+	Makefile.justmake, Makefile.last, Makefile.options,
+	Makefile.recursive, Makefile.utilities: * added implementations of various Makefiles
+	
+2001-07-20 18:03  exa
+
+	* cxx/build/Makefile.options: * separate Makefile.options
+	
+2001-07-20 17:59  exa
+
+	* cxx/build/Makefile.dirs: * separate Makefile.dirs
+	
+2001-07-20 17:55  exa
+
+	* cxx/build/replace.sh: * fixed a few bugs in new separate files (.files, .last)
+	
+2001-07-20 17:49  exa
+
+	* cxx/: Makefile, build/Makefile.files, build/Makefile.first,
+	build/Makefile.last: * separated automatic-dependencies, kludge, first, last, files
+	
+2001-07-20 17:32  exa
+
+	* cxx/Makefile: * justmake: separating implementation from interface
+	
+2001-07-20 16:55  exa
+
+	* doc/release-steps.txt: * added release steps file
+	
+2001-07-20 16:13  exa
+
+	* cxx/build/Makefile.last: * alternative newline replacement with tr command written as comment
+	
+2001-07-20 16:12  exa
+
+	* cxx/src/ISO_Library.hxx: * author name, remove a comment
+	
+2001-07-09 04:40  exa
+
+	* auto-cxx/: Makefile.in, config.cache, configure, configure.ac,
+	config/config.guess, config/config.sub, src/Makefile.in: [no log message]
+	
+2001-07-09 04:24  exa
+
+	* auto-cxx/: Makefile.in, aclocal.m4, config.log, configure,
+	configure.ac, config/ltmain.sh, src/ANSILibrary.hxx,
+	src/ANSI_Library.hxx, src/Application.cxx, src/General.hxx,
+	src/Log.cxx, src/Log.hxx, src/Makefile.am, src/Makefile.in,
+	src/Test.cxx, src/Utility.cxx, src/Utility.hxx: * move autoconf stuff to config
+	* update libtool
+	
+2001-07-09 03:13  exa
+
+	* deep/: Makefile, build/Makefile.files, build/Makefile.recursive,
+	build/Makefile.rules, dir1/Makefile, dir2/Makefile: * basic recursion support
+	
+2001-07-09 03:01  exa
+
+	* deep/: Makefile, build/Makefile.automatic-dependencies,
+	build/Makefile.commands, build/Makefile.dirs,
+	build/Makefile.experimental, build/Makefile.files,
+	build/Makefile.first, build/Makefile.kludge, build/Makefile.last,
+	build/Makefile.options, build/Makefile.pattern-rules,
+	build/Makefile.rules, build/Makefile.test,
+	build/Makefile.utilities, build/replace.sh: * copied over stuff from cxx
+	
+2001-07-09 02:20  exa
+
+	* cxx/: build/Makefile.files, build/Makefile.options,
+	build/Makefile.rules, justmake/Makefile.build-rules,
+	justmake/Makefile.rules: * add initial support for specifying libraries for each exec (like _LDADD in am)
+	* demonstrate prog/lib inter-dependencies
+	
+2001-07-09 01:35  exa
+
+	* cxx/src/: ISO_Library.hxx, General.hxx: * beautification: C++ comments
+	* g++-3.0: the std library changes a bit
+	
+2001-06-13 19:10  exa
+
+	* cxx/: build/Makefile.files, build/Makefile.pattern-rules,
+	build/Makefile.rules, justmake/Makefile.build-rules,
+	justmake/Makefile.pattern-rules, justmake/Makefile.rules,
+	src/General.hxx, src/Test.cxx: * compatibility fixes for g++-3.0
+	* libtool wants mode option (when odd compiler names are given)
+	
+2001-06-13 18:51  exa
+
+	* cxx/src/: Application.cxx, General.hxx, ISO_Library.hxx,
+	Utility.hxx: compatibility fixes for g++-3.0
+	
+2001-03-13 07:58  exa
+
+	* ChangeLog: [no log message]
+	
+2001-02-16 18:38  exa
+
+	* cxx/: Makefile, build/Makefile.commands, build/Makefile.files,
+	justmake/Makefile.commands, justmake/Makefile.kludge,
+	build/Makefile.last, build/Makefile.test, build/replace.sh,
+	justmake/Makefile.test, justmake/replace.sh:  * temporary build file goes into build dir
+	 * make clean cleans up better
+	 * all source files and object files are computed more extensively
+	
+2001-02-16 17:33  exa
+
+	* cxx/build/Makefile.dirs: [no log message]
+	
+2001-02-16 17:30  exa
+
+	* cxx/build/Makefile.last:  added Makefile.last which is processed last
+	
+2001-02-16 17:27  exa
+
+	* doc/README.justmake: new doc
+	
+2001-02-16 15:35  exa
+
+	* README, TODO:  updated readme and todo a bit
+	
+2001-02-16 15:34  exa
+
+	* doc/INSTALL:  more files for a more standard look
+	
+2001-02-16 15:14  exa
+
+	* doc/AUTHORS, doc/ChangeLog, doc/THANKS, AUTHORS, INSTALL, THANKS:  more files for a more standard look
+	
+2001-02-16 14:44  exa
+
+	* doc/exas-build-targets.txt: [no log message]
+	
+2001-02-16 14:43  exa
+
+	* COPYING, README, TODO:  * updated README and TODO
+	 * new COPYING file
+	
+2001-02-16 14:41  exa
+
+	* cxx/: Makefile, build/Makefile.commands,
+	build/Makefile.experimental, build/Makefile.files,
+	build/Makefile.first, build/Makefile.options,
+	build/Makefile.pattern-rules, build/Makefile.rules,
+	justmake/Makefile.automatic-dependencies,
+	justmake/Makefile.build-rules, justmake/Makefile.commands,
+	justmake/Makefile.experimental, justmake/Makefile.kludge,
+	justmake/Makefile.pattern-rules, justmake/Makefile.rules,
+	build/Makefile.test, build/Makefile.utilities,
+	justmake/Makefile.test:  * added copyright info
+	 * fixed:
+	    * Makefile.first called first
+	    * ln -s built stuff into current dir
+	    * fixed rules for source files and thus autodependency rules
+	    * correct build rules for execs and libs
+	
+2001-02-16 14:34  exa
+
+	* doc/COPYING:  added license
+	
+2001-02-16 14:04  exa
+
+	* cxx/: build/Makefile.files, build/Makefile.first,
+	build/Makefile.rules, justmake/Makefile.build-rules,
+	justmake/Makefile.rules:  added library build rules
+	 fix: libtool library names
+	
+2001-02-16 13:50  exa
+
+	* cxx/: Makefile, build/Makefile.files, build/Makefile.rules,
+	build/Makefile.test, justmake/Makefile.build-rules,
+	justmake/Makefile.kludge, justmake/Makefile.rules,
+	justmake/Makefile.test:  added generic build rule for exec files
+	 fix: install executable in current dir
+	
+2001-02-16 13:36  exa
+
+	* cxx/: build/replace.sh, justmake/replace.sh:  script that replaces <newline> with newline
+	
+2001-02-16 01:57  exa
+
+	* cxx/src/Test.cxx:  example second app
+	
+2001-02-16 01:56  exa
+
+	* cxx/: Makefile, build/Makefile.commands,
+	build/Makefile.experimental, build/Makefile.files,
+	build/Makefile.rules, build/Makefile.test,
+	justmake/Makefile.build-rules, justmake/Makefile.commands,
+	justmake/Makefile.experimental, justmake/Makefile.kludge,
+	justmake/Makefile.rules, justmake/Makefile.test:  * added an eval function for dynamic rule generation
+	 * 3 new files in build
+	   Makefile.kludge: stuff that is kludgey and will be replaced with better things
+	   Makefile.test: code that tests the Makefile suite
+	   Makefile.experimental: self-explanatory
+	 * eval used to compute lib and prog obj files
+	 * fixed TAGS target works on sources now
+	
+2001-02-15 22:10  exa
+
+	* cxx/build/Makefile.files:  * fix: sample lib filename in lib*.la format
+	
+2001-01-31 22:29  exa
+
+	* c/Makefile: [no log message]
+	
+2001-01-31 22:27  exa
+
+	* README, TODO, auto-cxx/src/Application.cxx, cxx/Makefile,
+	cxx/build/Makefile.commands, cxx/build/Makefile.dirs,
+	cxx/build/Makefile.files, cxx/build/Makefile.rules,
+	cxx/justmake/Makefile.build-rules, cxx/justmake/Makefile.commands,
+	cxx/justmake/Makefile.rules: some minor improvements :)
+	
+2001-01-10 06:27  exa
+
+	* auto-cxx/: AUTHORS, COPYING, ChangeLog, INSTALL, NEWS, README,
+	confdefs.h, stamp-h.in, config/config.guess, config/config.h.in,
+	config/config.sub, config/install-sh, config/ltconfig,
+	config/ltmain.sh, config/missing, config/mkinstalldirs,
+	config/stamp-h.in: added standard docs and scripts for autoconf/automake
+	
+2001-01-10 06:14  exa
+
+	* deep/Makefile: added deep skel which is a recursive build tree
+	
+2001-01-10 06:06  exa
+
+	* auto-cxx/: Makefile.am, Makefile.in, aclocal.m4, config.cache,
+	config.log, configure, configure.ac, src/Makefile.am: preliminary autoconf/automake support
+	
+2000-11-09 09:55  exa
+
+	* cxx/: build/Makefile.commands, build/Makefile.dirs,
+	build/Makefile.files, build/Makefile.rules,
+	justmake/Makefile.build-rules, justmake/Makefile.commands,
+	justmake/Makefile.rules: multiple executable support: object filenames autogenerated
+	
+2000-10-27 21:56  exa
+
+	* doc/: gnu-build-standards.txt, make-summary.txt: new docs
+	
+2000-10-26 08:00  exa
+
+	* cxx/: Makefile, build/Makefile.commands, build/Makefile.dirs,
+	build/Makefile.files, build/Makefile.rules,
+	justmake/Makefile.build-rules, justmake/Makefile.commands,
+	justmake/Makefile.rules, src/Application.cxx: package dirs, lame install target
+	
+2000-10-26 06:34  exa
+
+	* cxx/: build/Makefile.commands, build/Makefile.dirs,
+	build/Makefile.files, build/Makefile.rules,
+	build/Makefile.utilities, justmake/Makefile.build-rules,
+	justmake/Makefile.commands, justmake/Makefile.rules: automake like support for multiple programs/libraries, working
+	
+2000-10-26 03:22  exa
+
+	* cxx/: build/Makefile.files, build/Makefile.rules,
+	justmake/Makefile.build-rules, justmake/Makefile.rules: generalized lib and exec object files, interface more like automake
+	
+2000-10-25 13:35  exa
+
+	* cxx/: build/Makefile.commands, build/Makefile.dirs,
+	build/Makefile.files, justmake/Makefile.automatic-dependencies,
+	justmake/Makefile.commands: autodeps improved, clean works, computed var OBJFILES, dirs fixed
+	
+2000-10-25 13:28  exa
+
+	* cxx/Makefile: minor
+	
+2000-10-25 12:08  exa
+
+	* cxx/: build/Makefile.rules, justmake/Makefile.build-rules,
+	justmake/Makefile.rules: new entry
+	
+2000-10-25 12:06  exa
+
+	* cxx/Makefile: includes are in order
+	
+2000-09-11 03:18  exa
+
+	* cxx/: build/Makefile.commands, build/Makefile.dirs,
+	build/Makefile.files, build/Makefile.utilities,
+	justmake/Makefile.commands: Bringing to GNU makefile standards compatibility
+	
+2000-09-01 21:03  exa
+
+	* cxx/Makefile: [no log message]
+	
+2000-09-01 20:59  exa
+
+	* cxx/Makefile: [no log message]
+	
+2000-09-01 20:52  exa
+
+	* cxx/Makefile: [no log message]
+	
+2000-09-01 20:51  exa
+
+	* cxx/: Makefile, build/Makefile.commands~, build/Makefile.files~,
+	build/Makefile.pattern-rules~, build/Makefile.utilities~: removed editor backups
+	
+2000-09-01 20:42  exa
+
+	* cxx/: build/Makefile.commands, build/Makefile.commands~,
+	build/Makefile.dirs, build/Makefile.files, build/Makefile.files~,
+	build/Makefile.options, build/Makefile.pattern-rules,
+	build/Makefile.pattern-rules~, build/Makefile.utilities,
+	build/Makefile.utilities~,
+	justmake/Makefile.automatic-dependencies,
+	justmake/Makefile.commands, justmake/Makefile.pattern-rules: re-factored Makefile into small modules
+	
+2000-09-01 20:05  exa
+
+	* c/src/: config.h, global.h, main.c, system.h: added c dir
+	
+2000-08-31 23:28  exa
+
+	* cxx/Makefile: minor changes
+	
+2000-08-31 23:28  exa
+
+	* c_skel-0.01.tar.gz: [no log message]
+	
+2000-08-31 18:23  exa
+
+	* cxx/Makefile: clean removes dir now
+	
+2000-08-31 00:01  exa
+
+	* cxx/Makefile: split makefile into parts
+	
+2000-08-30 23:33  exa
+
+	* README, TODO, c_skel-0.01.tar.gz, auto-cxx/.emacs.desktop,
+	auto-cxx/Makefile.am, auto-cxx/Makefile.in, auto-cxx/aclocal.m4,
+	auto-cxx/confdefs.h, auto-cxx/config.cache, auto-cxx/config.log,
+	auto-cxx/configure, auto-cxx/configure.ac, auto-cxx/stamp-h.in,
+	auto-cxx/config/auto-cxx-id, auto-cxx/src/ANSILibrary.hxx,
+	auto-cxx/src/Application.cxx, auto-cxx/src/General.hxx,
+	auto-cxx/src/Makefile.am, c++/Makefile, c++/src/ANSILibrary,
+	c++/src/Application.cc, c++/src/General, cxx/Makefile,
+	cxx/src/Application.cxx, cxx/src/General.hxx,
+	cxx/src/ISO_Library.hxx, cxx/src/Log.cxx, cxx/src/Log.hxx,
+	cxx/src/Utility.cxx, cxx/src/Utility.hxx,
+	start-old/ANSILibrary.hxx, start-old/Application.cxx,
+	start-old/Application.d, start-old/General.hxx, start-old/Makefile,
+	start-old/def.cxx, start-old/def.hxx: Initial revision
+	
+2000-08-30 23:33  exa
+
+	* README, TODO, c_skel-0.01.tar.gz, auto-cxx/.emacs.desktop,
+	auto-cxx/Makefile.am, auto-cxx/Makefile.in, auto-cxx/aclocal.m4,
+	auto-cxx/confdefs.h, auto-cxx/config.cache, auto-cxx/config.log,
+	auto-cxx/configure, auto-cxx/configure.ac, auto-cxx/stamp-h.in,
+	auto-cxx/config/auto-cxx-id, auto-cxx/src/ANSILibrary.hxx,
+	auto-cxx/src/Application.cxx, auto-cxx/src/General.hxx,
+	auto-cxx/src/Makefile.am, c++/Makefile, c++/src/ANSILibrary,
+	c++/src/Application.cc, c++/src/General, cxx/Makefile,
+	cxx/src/Application.cxx, cxx/src/General.hxx,
+	cxx/src/ISO_Library.hxx, cxx/src/Log.cxx, cxx/src/Log.hxx,
+	cxx/src/Utility.cxx, cxx/src/Utility.hxx,
+	start-old/ANSILibrary.hxx, start-old/Application.cxx,
+	start-old/Application.d, start-old/General.hxx, start-old/Makefile,
+	start-old/def.cxx, start-old/def.hxx: bootstrapped to cvs
+	

@@ -1,0 +1,83 @@
+# Makefile
+#
+# by exa aka Eray Ozkural 2001
+# see COPYING file that comes with this distribution
+
+# Install commands
+
+install:
+	@echo Installing binaries in $(bindir)
+	@echo Installing datas in $(pkgbindir)
+	@echo $($(standard_dirs))
+	@echo in \"$(package_dirs)\" pkgbindir= $(pkgbindir)
+	$(foreach prg, $(EXECFILES), $(INSTALL_PROGRAM) $(prg) $(bindir)/$(notdir $(prg)) )
+
+# Clean commands
+
+clean:
+#NO_AUTODEPENDENCY=1
+	@echo Deleting object modules, executables and libraries
+	@-rm -f $(OBJFILES) $(EXECFILES) $(LIBFILES) $(LIB_OBJFILES:%.lo=%.o)
+	@echo Deleting dependencies
+	@-rm -f $(workingdir)/*.d
+	#@echo Deleting symbolic links in current directory
+	@-rmdir $(workingdir)
+
+distclean: clean
+	@echo Deleting archive
+	@-rm -rf $(DISTRIBUTION)
+
+maintainer-clean: distclean
+	@echo Deleting miscallenous files
+	@-rm -rf $(srcdir)/*.bak $(srcdir)/*~ $(builddir)/*~
+
+realclean: maintainer-clean
+	@-rm -rf $(workingdir)
+
+# List commands
+
+list: $(SRC) $(AUX)
+	@$(LS) $^
+
+listsrc: $(SRC)
+	@$(LS) $^
+
+# Distribution
+
+dist:	$(DISTRIBUTION)
+
+$(DISTRIBUTION): $(SRC) $(VER) $(DOC) $(AUX)
+	@cd .. ;\
+	echo Creating tar archive $(DISTRIBUTION);\
+	tar czvf $(dirname)/$(DISTRIBUTION) $(addprefix $(dirname)/,$?)
+
+listdist:
+	@echo Listing content of tar archive; \
+	tar tzvf $(DISTRIBUTION) | $(PAGER)
+
+extractarc:
+	@cd .. ;\
+	echo Extracting from tar archive $(DISTRIBUTION);\
+	tar xzvf $(dirname)/$(DISTRIBUTION)
+
+updatearc:
+	@cd .. ;\
+	echo Updating tar archive $(DISTRIBUTION);\
+	tar uzvf $(dirname)/$(DISTRIBUTION) $(addprefix $(dirname)/,$?)
+
+rmarc:
+	@Removing tar archive
+	@-rm -rf $(DISTRIBUTION)
+
+backup: $(DISTRIBUTION)
+	@echo Backing up archive $(DISTRIBUTION)
+	@$(CP) $(DISTRIBUTION) $(ARCPATH)
+
+restore:
+	@echo Restoring archive
+	@$(CP) $(ARCPATH)/$(DISTRIBUTION) .
+
+edit:	$(SRC)
+	@echo Invoking editor for all source files
+	@$(EDITOR) $^&
+

@@ -1,0 +1,1 @@
+justmake: targets malfunction without EXTENDED_RECURSION=1

@@ -1,0 +1,45 @@
+
+
+Recursive Builds
+----------------
+ * exported variables are passed to sub-make
+ * if -e flag used exported variables override those in sub-make
+ * SHELL and MAKEFLAGS are always exported
+ * MAKELEVEL indicates recursion depth where toplevel is 1
+ * MAKEFILES is a list of makefiles that sub-makes read before usual
+   ones.
+
+Variable Conventions
+--------------------
+ * Upper case for variables that users change, and lower case for
+   internal ones
+ * Users specify those on the command line, but you can change them
+   with override directive
+
+Variables Used by Implicit Rules
+--------------------------------
+* Utilities
+AR=ar, AS=as, CC=cc, CXX=g++, CO=co, CPP=$(CC) -E, FC=f77, GET=get
+LEX=lex, PC=pc, YACC=yacc, YACCR=yacc -r, MAKEINFO=makeinfo, TEX=tex
+TEXIDVI=texi2dvi, WEAVE=weave, CWEAVE=cweave, TANGLE=tangle,
+CTANGLE=ctangle, RM=rm -f
+* Flags given to utilities
+ARFLAGS=rv, ASFLAGS, CFLAGS, CXXFLAGS, COFLAGS, CPPFLAGS, FFLAGS (FC),
+GFLAGS (GET), LDFLAGS (ld?), PFLAGS (PC), RFLAGS (YACCR), YFLAGS (YACC)
+
+
+Substitution Reference
+----------------------
+foo := a.o b.o c.o
+bar := $(foo:%.o=%.c)
+sets `bar' to `a.c b.c c.c'
+   
+Computed Variable Names
+-----------------------
+     x = $(y)
+     y = z
+     z = Hello
+     a := $($(x))
+defines `a' as `Hello': `$($(x))' becomes `$($(y))' which becomes
+`$(z)' which becomes `Hello'. Works for _nested_ variable defs.
+

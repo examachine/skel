@@ -1,0 +1,63 @@
+# Makefile
+#
+# by exa aka Eray Ozkural 2001
+# see COPYING file that comes with this distribution
+
+# Test the features of the makefile suite
+
+.PHONY:	list-vars
+
+test-autodep:
+	@echo NO_AUTODEPENDENCY = $(NO_AUTODEPENDENCY)
+	@echo CXXFILES = $(CXXFILES)
+	@echo CXXDEPS = $(CXXDEPS)
+	@echo DEPENDENCIES = $(DEPENDENCIES)
+
+list-vars:
+	@echo PROGRAMS=$(PROGRAMS)
+	@echo LIBRARIES=$(LIBRARIES)
+	@echo EXECFILES=$(EXECFILES)
+	@echo LIBFILES=$(LIBFILES)
+	@echo OBJFILES=$(OBJFILES)
+	@echo SRCFILES=$(SRCFILES)
+	@echo app_OBJFILES=$(app_OBJFILES)
+	@echo app2_OBJFILES=$(app2_OBJFILES)
+	@echo mylib_CXXFILES=$(mylib_CXXFILES)
+	@echo mylib_OBJFILES=$(mylib_OBJFILES)
+	@echo mylib2_OBJFILES=$(mylib2_OBJFILES)
+
+str = a b c d
+addboo = $(addprefix boo,$(1))
+addboo2 = $(addprefix $(2),$(1))
+
+o := $(call map,addboo,$(str))
+o2 := $(call map2,addboo2,$(str),moo)
+
+esek := $(call eval,ox=realox)
+
+test-eval:
+	@echo $(okuz)
+
+test-map:
+	@echo o = $(o)
+	@echo o2 = $(o2)
+
+ev = echo $(1);$(1)
+
+o3 := $(call map2,addboo2,$(str),dollar)
+$(call eval,ox=dollar)
+
+test-dollar:
+	#echo '$(addprefix $$, $(str))'
+	$(call map,eval,dollar dollar)
+	echo $(o3)
+
+test-subst:
+	echo '$(subst dollar,$$,dollar)'
+
+test-kludge:
+	cat << EOF
+	BOOOOOOOKKKKKK
+	EOF
+#	$(write-rule)
+

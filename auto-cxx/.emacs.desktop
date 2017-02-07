@@ -1,0 +1,81 @@
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Sat Oct 30 23:33:57 1999
+;; Emacs version 20.3.2
+
+;; Global section:
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name nil)
+(setq tags-table-list nil)
+(setq search-ring nil)
+(setq regexp-search-ring nil)
+(setq register-alist nil)
+
+;; Buffer section:
+(desktop-create-buffer 205
+  "/home/exa/devel/auto-skel/Application.cxx"
+  "Application.cxx"
+  'c++-mode
+  '(nil)
+  129
+  '(nil nil)
+  nil
+  nil
+  '((case-fold-search . t)))
+
+(desktop-create-buffer 205
+  "/home/exa/devel/auto-skel/General.hxx"
+  "General.hxx"
+  'c++-mode
+  '(nil)
+  169
+  '(nil nil)
+  nil
+  nil
+  '((case-fold-search . t)))
+
+(desktop-create-buffer 205
+  "/home/exa/devel/auto-skel/configure.in"
+  "configure.in"
+  'fundamental-mode
+  '(nil)
+  480
+  '(428 nil)
+  nil
+  nil
+  '((case-fold-search . t)))
+
+(desktop-create-buffer 205
+  "/home/exa/devel/auto-skel/src/Makefile.am"
+  "Makefile.am<2>"
+  'makefile-mode
+  '(nil)
+  210
+  '(1 nil)
+  nil
+  nil
+  '((case-fold-search . t)))
+
+(desktop-create-buffer 205
+  "/home/exa/devel/auto-skel/Makefile"
+  "Makefile"
+  'makefile-mode
+  '(nil)
+  1
+  '(1 nil)
+  nil
+  nil
+  '((case-fold-search . t)))
+
+(desktop-create-buffer 205
+  "/home/exa/devel/auto-skel/Makefile.am"
+  "Makefile.am"
+  'makefile-mode
+  '(nil)
+  60
+  '(1 nil)
+  nil
+  nil
+  '((case-fold-search . t)))
+
